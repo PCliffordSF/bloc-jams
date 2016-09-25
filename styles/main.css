@@ -35,6 +35,17 @@ html {
      height: 100px;
      color: white;
      text-decoration: none;
+     opacity: 0;
+     -webkit-transform: scaleX(2) translateX(-15rem);
+     -moz-transform: scaleX(2) translateX(-15rem);
+     transform: scaleX(2) translateX(-15rem)
+         
+    -webkit-transition: all 1.5s ease-in-out;
+     -moz-transition: all 1.5s ease-in-out;
+     transition: all 1.5s ease-in-out;
+     -webkit-transition-delay: 0.5s;
+     -moz-transition-delay: 0.5s;
+     transition-delay: 0.5s;
  }
 
  .links-container .navbar-link {
