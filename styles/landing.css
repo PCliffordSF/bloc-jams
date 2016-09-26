@@ -26,6 +26,11 @@
 
  .selling-points {
      position: relative;
+/*     -webkit-transform:scale(1.0);*/
+ }
+
+.hack {
+/*     -webkit-transform:scale(1.0);*/
  }
  
  .point {
