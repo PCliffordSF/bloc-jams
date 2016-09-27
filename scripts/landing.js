@@ -1,23 +1,18 @@
+var pointsArray = document.getElementsByClassName('point');
 
-var animatePoints = function() {
+function revealPoint(points) { 
+     points.style.opacity = 1;
+     points.style.transform = "scaleX(1) translateY(0)";
+     points.style.msTransform = "scaleX(1) translateY(0)";
+     points.style.WebkitTransform = "scaleX(1) translateY(0)";
+}
 
-     var points = document.getElementsByClassName('point');
-//     var sellingPoints = document.getElementsByClassName('selling-points');
-     for (var i = 0; i < points.length; i++) {
-         revealPoint(i);
-     }
-
-    function revealPoint(index) {
-//         if (index === 0) {
-//             sellingPoints[index].classList += ' hack';
-//             console.log(sellingPoints[index].classList)
-//         };
-        
-         points[index].style.opacity = 1;
-         points[index].style.transform = "scaleX(1) translateY(0)";
-         points[index].style.msTransform = "scaleX(1) translateY(0)";
-         points[index].style.WebkitTransform = "scaleX(1) translateY(0)";
-    }
+var animatePoints = function(points) {
+//    first method
+//    forEach(points, revealPoint);
+    
+//    second method
+    pointsArray.forEach(revealPoint);
 
  };
 
@@ -30,5 +25,21 @@ var moveNavBar = function() {
     
 }
 
-animatePoints();
-moveNavBar();
+ window.onload = function() {
+     // this is my snazy addition to the project.
+      moveNavBar();
+     
+      if (window.innerHeight > 950) {
+         animatePoints(pointsArray);
+     }
+     var sellingPoints = document.getElementsByClassName('selling-points')[0];
+     var scrollDistance = sellingPoints.getBoundingClientRect().top - window.innerHeight + 200;
+     window.addEventListener('scroll', function(event) {
+         if (document.documentElement.scrollTop || document.body.scrollTop >= scrollDistance) {
+             animatePoints(pointsArray);   
+         }
+     });
+ }
+
+
+ 
