@@ -9,10 +9,10 @@ function revealPoint(points) {
 
 var animatePoints = function(points) {
 //    first method
-//    forEach(points, revealPoint);
+    forEach(points, revealPoint);
     
 //    second method
-    pointsArray.forEach(revealPoint);
+//    pointsArray.forEach(revealPoint);
 
  };
 
