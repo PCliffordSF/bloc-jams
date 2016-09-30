@@ -99,8 +99,7 @@ var playAlbum = function() {
         albumPlayed += 1;
         setCurrentAlbum(albumsList[albumPlayed % albumsList.length]);
     }; 
-}; // I would normally use Math.random(), but I think using closure is a little neater. 
-// plus I just learned it, so it's nice putting to work right away.
+}; 
 
  window.onload = function() {
      setCurrentAlbum(albumPicasso);
