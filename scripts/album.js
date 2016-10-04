@@ -88,6 +88,13 @@
 
 //this is the github code
 var findParentByClassName = function(element, targetClass) {
+    
+    if (element.parentElement === null) {
+        alert("No Parent Found");
+    } else if (element.parentElement.className !== targetClass) {
+        alert("No parent found with that class name");
+    }
+    
     if (element) {
         var currentParent = element.parentElement;
         while (currentParent.className != targetClass && currentParent.className !== null) {
@@ -189,7 +196,6 @@ var playAlbum = function() {
      
      for (var i = 0; i < songRows.length; i++) {
          songRows[i].addEventListener('mouseleave', function(event) {
-             console.log(event.target);
          var songItem = getSongItem(event.target);
          var songItemNumber = songItem.getAttribute('data-song-number');
 
