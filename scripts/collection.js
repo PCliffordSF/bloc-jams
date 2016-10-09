@@ -26,4 +26,4 @@
     
       $collectionContainer.append($newThumbnail);
      }
- }
+ });
