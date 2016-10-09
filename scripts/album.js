@@ -62,6 +62,21 @@
      var $row = $(template);
      
      var clickHandler = function() {
+        var songNumber = $(this).attr('data-song-number');
+         // Need to check all possible states of currentlyPlayingSong
+        if (currentlyPlayingSong !== null) {        
+            var currentlyPlayingCell = $('.song-item-number[data-song-number="' + currentlyPlayingSong + '"]');
+            currentlyPlayingCell.html(currentlyPlayingSong);
+        }
+        if (currentlyPlayingSong !== songNumber) {
+            $(this).html(pauseButtonTemplate);
+            currentlyPlayingSong = songNumber;
+        } 
+        else if (currentlyPlayingSong === songNumber) {
+            $(this).html(playButtonTemplate);
+            currentlyPlayingSong = null;
+        }
+    };
           
      var onHover = function(event) {
         var songNumberCell = $(this).find('.song-item-number');
@@ -85,7 +100,7 @@
      $row.hover(onHover, offHover);
      
      return $row;
- };
+ 
  };
 
 
@@ -134,6 +149,10 @@ var playAlbum = function() {
 
  $(document).ready(function() {
      setCurrentAlbum(albumPicasso);
-
+      for (var i = 0; i < songRows.length; i++) {
+                   songRows[i].addEventListener('click', function(event) {
+             clickHandler(event.target);
+         });
+     }
  });
 
