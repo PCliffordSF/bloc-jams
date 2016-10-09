@@ -91,13 +91,14 @@ var findParentByClassName = function(element, targetClass) {
     
     if (element.parentElement === null) {
         alert("No Parent Found");
-    } else if (element.parentElement.className !== targetClass) {
-        alert("No parent found with that class name");
-    }
-    
-    if (element) {
+    } else {
         var currentParent = element.parentElement;
-        while (currentParent.className != targetClass && currentParent.className !== null) {
+        var parentExists = true;
+        while (currentParent.className != targetClass && parentExists) {
+            if (currentParent.parentElement === null) {
+                alert("No parent found with that class name")
+                parentExists = false;
+            }
             currentParent = currentParent.parentElement;
         }
         return currentParent;
@@ -211,3 +212,22 @@ var playAlbum = function() {
           
      }
  }
+ 
+ 
+ 
+// var findParentByClassName = function(element, targetClass) {
+//    
+//    if (element.parentElement === null) {
+//        alert("No Parent Found");
+//    } else if (element.parentElement.className !== targetClass) {
+//        alert("No parent found with that class name");
+//    }
+//    
+//    if (element) {
+//        var currentParent = element.parentElement;
+//        while (currentParent.className != targetClass && currentParent.className !== null) {
+//            currentParent = currentParent.parentElement;
+//        }
+//        return currentParent;
+//    }
+//};
