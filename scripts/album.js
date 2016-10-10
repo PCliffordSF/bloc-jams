@@ -42,7 +42,7 @@
           
         var songNumberCell = $(this).find('.song-item-number');
         var songNumber = parseInt(songNumberCell.attr('data-song-number'));
-        console.log("songNumber type is " + typeof songNumber + "\n and currentlyPlayingSongNumber type is " + typeof currentlyPlayingSongNumber);
+//        console.log("songNumber type is " + typeof songNumber + "\n and currentlyPlayingSongNumber type is " + typeof currentlyPlayingSongNumber);
 
         if (songNumber !== currentlyPlayingSongNumber) {
             songNumberCell.html(songNumber);
@@ -118,7 +118,7 @@ var nextSong = function() {
     var getLastSongNumber = function(index) {
         return index == 0 ? currentAlbum.songs.length : index;
     };
-    
+    console.log("index " + index);
     var currentSongIndex = trackIndex(currentAlbum, currentSongFromAlbum);
     currentSongIndex++;
     
@@ -126,7 +126,7 @@ var nextSong = function() {
         currentSongIndex = 0;
     }
     
-    setSong(songNumber);
+    setSong(currentSongIndex);
 
   
     $('.currently-playing .song-name').text(currentSongFromAlbum.title);
@@ -147,11 +147,13 @@ var previousSong = function() {
     // this is very similar to the function above. I was thinking you could 
     // write the same function and use parameters to change the behaviour, but 
     // then you can't call it from the handler. 
+    
 
     var getLastSongNumber = function(index) {
         return index == (currentAlbum.songs.length - 1) ? 1 : index + 2;
     };
     
+    console.log("index " + index);
     var currentSongIndex = trackIndex(currentAlbum, currentSongFromAlbum);
 
     currentSongIndex--;
@@ -161,7 +163,7 @@ var previousSong = function() {
     }
     
    
-    setSong(songNumber); // setsong
+    setSong(currentSongIndex); // setsong
     
 
     $('.currently-playing .song-name').text(currentSongFromAlbum.title);
