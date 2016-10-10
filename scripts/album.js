@@ -115,7 +115,7 @@ var playAlbum = function() {
 }; 
 
 var nextSong = function() {
-    
+    console.log("index " + index);
     var getLastSongNumber = function(index) {
         return index == 0 ? currentAlbum.songs.length : index;
     };
@@ -149,6 +149,8 @@ var previousSong = function() {
     // this is very similar to the function above. I was thinking you could 
     // write the same function and use parameters to change the behaviour, but 
     // then you can't call it from the handler. 
+    
+    console.log("index " + index);
 
     var getLastSongNumber = function(index) {
         return index == (currentAlbum.songs.length - 1) ? 1 : index + 2;
