@@ -20,6 +20,7 @@
      
     if (currentlyPlayingSongNumber !== songNumber) {
              setSong(songNumber);
+        
              currentSoundFile.play();
              $(this).html(pauseButtonTemplate);
              currentSongFromAlbum = currentAlbum.songs[songNumber - 1];
