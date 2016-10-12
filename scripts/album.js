@@ -1,4 +1,5 @@
  var createSongRow = function(songNumber, songName, songLength) {
+     songLength = filterTimeCode(songLength);
      var template =
         '<tr class="album-view-song-item">'
       + '  <td class="song-item-number" data-song-number="' + songNumber + '">' + songNumber + '</td>'
@@ -84,8 +85,10 @@
  };
 
  var updateSeekBarWhileSongPlays = function() {
+
      if (currentSoundFile) {
          currentSoundFile.bind('timeupdate', function(event) {
+             setCurrentTimeInPlayerBar(this.getTime());
              var seekBarFillRatio = this.getTime() / this.getDuration();
              var $seekBar = $('.seek-control .seek-bar');
              updateSeekPercentage($seekBar, seekBarFillRatio);
@@ -146,11 +149,12 @@
  };
 
 var updatePlayerBarSong = function() {
+    
+    setTotalTimeInPlayerBar(currentSongFromAlbum.duration);
 
     $('.currently-playing .song-name').text(currentSongFromAlbum.title);
     $('.currently-playing .artist-name').text(currentAlbum.artist);
     $('.currently-playing .artist-song-mobile').text(currentSongFromAlbum.title + " - " + currentAlbum.artist);
-    
     $('.main-controls .play-pause').html(playerBarPauseButton);
 };
 
@@ -247,13 +251,10 @@ var seek = function(time) {
  };
 
 var getSongNumberCell = function(number) {
-    return $('.song-item-number[data-song-number="' + number + '"]');
-    
-}
+    return $('.song-item-number[data-song-number="' + number + '"]'); 
+};
 
 var togglePlayFromPlayerBar = function() {
-    console.log($(this).children().hasClass("ion-pause"));
-    console.log(currentSoundFile);
     
     if ($(this).children().hasClass("ion-play")) {
         $(this).children().toggleClass("ion-play")
@@ -266,10 +267,27 @@ var togglePlayFromPlayerBar = function() {
         $(this).children().toggleClass("ion-pause")
         $(this).children().toggleClass("ion-play")
         currentSoundFile.pause();
-    }
-    
+    }  
+};
+
+ var setCurrentTimeInPlayerBar = function(currentTime) {
+     currentTime = filterTimeCode(currentTime);
+     $(".current-time")[0].innerHTML = currentTime;
+ }
+ 
+ var setTotalTimeInPlayerBar =  function(totalTime) {
+     totalTime = filterTimeCode(totalTime);
+     $(".total-time")[0].innerHTML = totalTime;
+ }
+
+function filterTimeCode(timeInSeconds) {
+    var time = parseFloat(timeInSeconds);
+    var minutes = Math.floor(time / 60);
+    var seconds = Math.floor(time % 60);
+    return minutes + ":" + seconds;
 }
-     
+ 
+ 
  var playButtonTemplate = '<a class="album-song-button"><span class="ion-play"></span></a>';
  var pauseButtonTemplate = '<a class="album-song-button"><span class="ion-pause"></span></a>';
  var playerBarPlayButton = '<span class="ion-play"></span>';
